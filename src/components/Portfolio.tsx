@@ -16,7 +16,6 @@ interface Project {
   liveUrl?: string;
 }
 
-// FIX: Updated GitHub links and replaced broken image
 const projects: Project[] = [
   {
     title: 'AI Chat Application',
@@ -34,8 +33,7 @@ const projects: Project[] = [
   {
     title: 'Prompt Engineering Tool',
     desc: 'Developed a prompt optimization tool for improving AI model outputs.',
-    // Replaced broken image with a working one
-    img: 'https://images.unsplash.com/photo-1678483787762-403b5f39c874?w=800&h=600&fit=crop', 
+    img: 'https://images.unsplash.com/photo-1701469784131-23610938f712?w=800&h=600&fit=crop', // <-- IMAGE FIX
     liveUrl: '#',
     githubUrl: 'https://github.com/HR-894'
   },
@@ -76,7 +74,7 @@ export const Portfolio = () => {
     <>
       <section ref={sectionRef} id="portfolio" className="container mx-auto px-6 py-20 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-          <span className="glass-text text-glow animate-glow inline-block">
+          <span className="section-heading-glass text-glow animate-glow inline-block"> {/* <-- HEADING STYLE FIX */}
             Featured <span className="text-gradient">Projects</span>
           </span>
         </h2>

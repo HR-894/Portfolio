@@ -45,7 +45,7 @@ export const Contact = () => {
   return (
     <section ref={sectionRef} id="contact" className="container mx-auto px-6 py-20 relative z-10">
       <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-        <span className="glass-text text-glow animate-glow inline-block">
+        <span className="section-heading-glass text-glow animate-glow inline-block"> {/* <-- STYLE FIX */}
           Get In <span className="text-gradient">Touch</span>
         </span>
       </h2>
@@ -137,7 +137,6 @@ export const Contact = () => {
               <h3 className="font-bold mb-1">
                 <span className="glass-text text-glow">Location</span>
               </h3>
-              {/* FIX: Changed location */}
               <p className="glass-text text-sm">Bihar, India</p>
             </div>
           </Card>

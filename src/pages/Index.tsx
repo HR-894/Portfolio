@@ -34,8 +34,7 @@ const Index = () => {
   }, []);
 
   return (
-    // FIX: Removed md:cursor-none to make cursor visible
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen cursor-none"> {/* <-- CURSOR HIDE FIX */}
       <MouseTracker />
       <CustomCursor />
       <AnimatedBackground />

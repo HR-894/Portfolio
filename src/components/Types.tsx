@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// FIX: Updated skills to match LinkedIn/PDF
 const types = [
   {
     icon: Zap,
@@ -19,14 +18,14 @@ const types = [
     desc: 'Automating complex processes and workflows using AI-driven technologies.'
   },
   {
-    icon: LineChart,
-    title: 'Product Strategy',
-    desc: 'Strategic product thinking from ideation to launch and optimization.'
-  },
-  {
     icon: Brain,
     title: 'Prompt Engineering',
     desc: 'Crafting and refining prompts to maximize AI model performance and outputs.'
+  },
+  {
+    icon: LineChart,
+    title: 'Product Strategy',
+    desc: 'Strategic product thinking from ideation to launch and optimization.'
   }
 ];
 

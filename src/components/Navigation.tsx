@@ -31,9 +31,8 @@ export const Navigation = () => {
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold">
-              {/* FIX: Replaced 'text-glow' with 'text-glow-multicolor' */}
-              <span className="glass-text text-glow-multicolor">
-                Himanshu <span className="text-gradient">Raj</span>
+              <span className="text-glow-multicolor">
+                Himanshu Raj
               </span>
             </div>
             

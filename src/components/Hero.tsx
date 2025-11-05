@@ -6,10 +6,8 @@ import { useTypingEffect } from '@/hooks/useTypingEffect';
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
-  // FIX: "IMANSHU" -> "HIMANSHU"
   const { displayedText: nameText, isComplete: nameComplete } = useTypingEffect('HIMANSHU RAJ', 150);
   
-  // FIX: Added 'nameComplete' check to prevent "undefined"
   const { displayedText: roleText, isComplete: roleComplete } = useTypingEffect(
     nameComplete ? 'Product Management & Applied AI Student 🚀' : '',
     50
@@ -40,7 +38,7 @@ export const Hero = () => {
         <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-primary/50 rounded-bl-2xl" />
         <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-primary/50 rounded-br-2xl" />
         
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight relative">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight relative"> {/* <-- SIZE FIX */}
           <span className="glass-text text-glow animate-glow text-foreground">
             Hi, I'm <strong className={`text-gradient ${!nameComplete ? 'typing-cursor' : ''}`}>{nameText || '\u00A0'}</strong>
           </span>
@@ -72,7 +70,6 @@ export const Hero = () => {
           </div>
         )}
         
-        {/* FIX: Updated icons to use brand color glow style */}
         {roleComplete && (
           <div className="flex items-center gap-6">
           <a

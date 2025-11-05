@@ -12,7 +12,6 @@ interface TimelineItem {
   icon: 'education' | 'award' | 'learning' | 'achievement';
 }
 
-// FIX: Updated timeline data based on Roadmap PDF
 const timelineData: TimelineItem[] = [
   {
     year: '2026',
@@ -89,7 +88,9 @@ export const Timeline = () => {
   return (
     <section ref={timelineRef} id="timeline" className="container mx-auto px-6 py-20 relative z-10">
       <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-        <span className="glass-text text-glow text-gradient">My Journey</span>
+        <span className="section-heading-glass text-glow inline-block"> {/* <-- STYLE FIX */}
+          <span className="text-gradient">My Journey</span>
+        </span>
       </h2>
 
       <div className="relative max-w-5xl mx-auto">

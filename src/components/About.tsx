@@ -32,7 +32,7 @@ export const About = () => {
     <section ref={sectionRef} id="about" className="container mx-auto px-6 py-20 relative z-10">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-          <span className="glass-text text-glow animate-glow inline-block">
+          <span className="section-heading-glass text-glow animate-glow inline-block"> {/* <-- STYLE FIX */}
             About <span className="text-gradient">Me</span>
           </span>
         </h2>
