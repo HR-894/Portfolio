@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+:root {
+    /* Portfolio Gradient Colors */
+    --grad-blue: 240 100% 62%;
+    --grad-purple: 270 84% 63%;
+    --grad-pink: 0 100% 78%;
+    --grad-salmon: 22 100% 74%;
+    
+    /* Base Colors */
+    --background: 240 38% 17%;
+    --foreground: 270 40% 96%;
+    
+    --card: 240 29% 23%;
+    --card-foreground: 270 40% 96%;
+    
+    --popover: 240 29% 23%;
+    --popover-foreground: 270 40% 96%;
+    
+    --primary: 270 84% 63%;
+    --primary-foreground: 270 40% 96%;
+    
+    --secondary: 240 29% 23%;
+    --secondary-foreground: 270 40% 96%;
+    
+    --muted: 240 20% 35%;
+    --muted-foreground: 270 20% 75%;
+    
+    --accent: 0 100% 78%;
+    --accent-foreground: 240 38% 17%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 270 40% 96%;
+    
+    --border: 240 20% 35%;
+    --input: 240 29% 23%;
+    --ring: 270 84% 63%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom Properties */
+    --glass: 240 29% 23% / 0.8;
+    --spotlight-size: 400px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    background: linear-gradient(
+      110deg,
+      hsl(var(--grad-blue)) 0%,
+      hsl(var(--grad-purple)) 35%,
+      hsl(var(--grad-pink)) 70%,
+      hsl(var(--grad-salmon)) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    transition: background 0.5s ease, color 0.3s ease;
+  }
+  
+  /* Mouse Spotlight Effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    background: radial-gradient(
+      circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  body:hover::before {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background: hsl(var(--glass));
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border));
+    transition: background 0.3s ease, border 0.3s ease;
+  }
+  
+  .glass-text {
+    text-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.8),
+      0 0 40px rgba(0, 0, 0, 0.6),
+      0 2px 4px rgba(0, 0, 0, 0.9);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+  }
+  
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--grad-purple)),
+      hsl(var(--grad-pink))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-glow {
+    text-shadow: 
+      0 0 10px rgba(160, 80, 240, 0.5),
+      0 0 20px rgba(160, 80, 240, 0.3),
+      0 0 30px rgba(160, 80, 240, 0.2);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  .typing-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  
+  .section-transition {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .section-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 
+      0 0 10px rgba(160, 80, 240, 0.5),
+      0 0 20px rgba(160, 80, 240, 0.3);
+  }
+  to {
+    text-shadow: 
+      0 0 20px rgba(160, 80, 240, 0.8),
+      0 0 30px rgba(160, 80, 240, 0.5),
+      0 0 40px rgba(160, 80, 240, 0.3);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
