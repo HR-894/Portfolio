@@ -6,10 +6,10 @@ import { useTypingEffect } from '@/hooks/useTypingEffect';
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
-  const { displayedText: nameText, isComplete: nameComplete } = useTypingEffect('HIMANSHU RAJ', 150);
+  const { displayedText: nameText, isComplete: nameComplete } = useTypingEffect(' HIMANSHU RAJ', 150);
   
   const { displayedText: roleText, isComplete: roleComplete } = useTypingEffect(
-    nameComplete ? 'Product Management & Applied AI Student 🚀' : '',
+    nameComplete ? ' Product Management & Applied AI Student 🚀' : '',
     50
   );
 
@@ -40,14 +40,14 @@ export const Hero = () => {
         
         <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight relative"> {/* <-- MARGIN FIX */}
           <span className="text-glow text-foreground"> {/* <-- FIX: Removed glass-text */}
-            Hi, I'm <strong className={`text-gradient ${!nameComplete ? 'typing-cursor' : ''}`}>{nameText || '\u00A0'}</strong>
+            Hi, I'm <strong className={`text-gradient ${!nameComplete ? 'typing-cursor' : ''}`}>{nameText.replace("undefined", "") || '\u00A0'}</strong>
           </span>
         </h1>
         
         {nameComplete && (
           <p className="text-lg md:text-2xl text-foreground/90 mb-8"> {/* <-- MOVED ROLE HERE */}
             <span className={`text-glow ${!roleComplete ? 'typing-cursor' : ''}`}> {/* <-- FIX: Removed glass-text */}
-              {roleText || '\u00A0'}
+              {roleText.replace("undefined", "") || '\u00A0'}
             </span>
           </p>
         )}

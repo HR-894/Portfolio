@@ -8,7 +8,7 @@ export const useTypingEffect = (text: string, speed: number = 100) => {
     setDisplayedText('');
     setIsComplete(false);
 
-    // FIX: Prevent interval from running on empty/undefined string
+    // Ye check zaroori hai
     if (!text) {
       setIsComplete(true);
       return;
@@ -16,9 +16,14 @@ export const useTypingEffect = (text: string, speed: number = 100) => {
 
     let index = 0;
     const timer = setInterval(() => {
-      if (index < text.length) {
+      // YEH HAI ASLI LOGIC
+      
+      // 1. Check "index < text.length" (na ki "<=")
+      if (index < text.length) { 
+        // 2. Pehle letter add karo
         setDisplayedText((prev) => prev + text[index]);
-        index++;
+        // 3. Phir index badhao
+        index++; 
       } else {
         setIsComplete(true);
         clearInterval(timer);
