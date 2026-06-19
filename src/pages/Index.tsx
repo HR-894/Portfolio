@@ -78,7 +78,7 @@ const Index = () => {
                 className="icon-link-box github" aria-label="GitHub">
                 <Github size={18} className="text-white" />
               </a>
-              <a href="https://www.linkedin.com/in/himanshu-raj-373297383/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/hr894/" target="_blank" rel="noopener noreferrer"
                 className="icon-link-box linkedin" aria-label="LinkedIn">
                 <Linkedin size={18} className="text-white" />
               </a>
