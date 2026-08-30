@@ -6,7 +6,29 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9]+([._%+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,24}$/;
+
+const FAKE_USERNAMES = new Set([
+  'abc', 'xyz', 'test', 'asdf', 'qwer', 'qwerty', 'admin', 'fake', 'none', 'noone',
+  'hello', 'dummy', 'sample', '123', '1234', '12345', 'user', 'temp', 'mail', 'email',
+  'anonymous', 'someone', 'nobody', 'spam', 'random', 'testing', 'contact', 'info',
+  'asd', 'zxcv', 'null', 'undefined', 'qwertyuiop', 'asdfghjkl'
+]);
+
+const DOMAIN_TYPOS: Record<string, string> = {
+  'gmai.com': 'gmail.com',
+  'gamil.com': 'gmail.com',
+  'gmial.com': 'gmail.com',
+  'gmaill.com': 'gmail.com',
+  'gmail.co': 'gmail.com',
+  'gmaill.co': 'gmail.com',
+  'hotmial.com': 'hotmail.com',
+  'hotmaill.com': 'hotmail.com',
+  'yaho.com': 'yahoo.com',
+  'yahooo.com': 'yahoo.com',
+  'outlok.com': 'outlook.com',
+  'outloook.com': 'outlook.com',
+};
 
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email',
@@ -14,31 +36,76 @@ const DISPOSABLE_DOMAINS = new Set([
   'discard.email', 'temp-mail.org', 'fakeinbox.com', 'trashmail.com',
   'maildrop.cc', 'harakirimail.com', '10minutemail.com', 'mohmal.com',
   'burnermail.io', 'inboxbear.com', 'mailnesia.com', 'getnada.com',
+  'dispostable.com', 'crazymailing.com', 'generator.email', 'fakemailgenerator.net',
+  'temp-mail.io', 'nada.ltd', 'mytemp.email', 'inboxkitten.com', 'trashmail.net',
+  'zillamail.com', 'emailondeck.com', 'internxt.com', 'tempail.com',
+  'getairmail.com', 'mytempemail.com', 'minuteinbox.com', 'throwawaymail.com',
+  'burnermail.com', 'tempinbox.com', 'boun.cr', 'armyspy.com', 'cuvox.de',
+  'dayrep.com', 'einrot.com', 'fleckens.hu', 'gustr.com', 'jourrapide.com',
+  'rhyta.com', 'superrito.com', 'teleworm.us', 'tinypm.com', 'trashymail.com'
 ]);
 
 function validateEmail(email: string): { valid: boolean; error?: string } {
-  if (!email.trim()) return { valid: false, error: 'Email is required.' };
-  if (!EMAIL_REGEX.test(email)) return { valid: false, error: 'Please enter a valid email address.' };
-  const domain = email.split('@')[1]?.toLowerCase();
-  if (!domain) return { valid: false, error: 'Invalid email domain.' };
-  if (DISPOSABLE_DOMAINS.has(domain)) return { valid: false, error: 'Disposable email addresses are not allowed.' };
+  const trimmed = email.trim().toLowerCase();
+  if (!trimmed) return { valid: false, error: 'Email address is required.' };
+
+  if (!trimmed.includes('@')) {
+    return { valid: false, error: 'Invalid email: missing "@" (e.g. yourname@gmail.com).' };
+  }
+
+  if (!EMAIL_REGEX.test(trimmed)) {
+    return { valid: false, error: 'Please enter a valid email format (e.g. name@domain.com).' };
+  }
+
+  const parts = trimmed.split('@');
+  if (parts.length !== 2) return { valid: false, error: 'Invalid email format.' };
+  const [username, domain] = parts;
+
+  if (username.length < 3) {
+    return { valid: false, error: 'Email username must be at least 3 characters.' };
+  }
+
+  if (/^(.)\1+$/.test(username) || /^\d+$/.test(username)) {
+    return { valid: false, error: 'Please enter a genuine, active email address.' };
+  }
+
+  if (FAKE_USERNAMES.has(username)) {
+    return { valid: false, error: `"${username}" looks like a placeholder. Please use your real email.` };
+  }
+
+  if (DOMAIN_TYPOS[domain]) {
+    return { valid: false, error: `Did you mean @${DOMAIN_TYPOS[domain]}? Please check your domain spelling.` };
+  }
+
+  if (
+    DISPOSABLE_DOMAINS.has(domain) ||
+    domain.includes('temp') ||
+    domain.includes('disposable') ||
+    domain.includes('throwaway') ||
+    domain.includes('fakemail')
+  ) {
+    return { valid: false, error: 'Temporary or disposable email services are blocked. Please use your real email.' };
+  }
+
   return { valid: true };
 }
 
 function validateName(name: string): { valid: boolean; error?: string } {
   const trimmed = name.trim();
-  if (!trimmed) return { valid: false, error: 'Name is required.' };
+  if (!trimmed) return { valid: false, error: 'Your name is required.' };
   if (trimmed.length < 2) return { valid: false, error: 'Name must be at least 2 characters.' };
   if (/[<>{}()\[\]]/.test(trimmed)) return { valid: false, error: 'Name contains invalid characters.' };
+  if (/^(.)\1+$/.test(trimmed)) return { valid: false, error: 'Please enter a genuine name.' };
   return { valid: true };
 }
 
 function validateMessage(msg: string): { valid: boolean; error?: string } {
   const trimmed = msg.trim();
-  if (!trimmed) return { valid: false, error: 'Message is required.' };
-  if (trimmed.length < 10) return { valid: false, error: 'Message must be at least 10 characters.' };
+  if (!trimmed) return { valid: false, error: 'Message cannot be empty.' };
+  if (trimmed.length < 15) return { valid: false, error: 'Please write a brief message of at least 15 characters.' };
   const urlCount = (trimmed.match(/https?:\/\//gi) || []).length;
-  if (urlCount > 3) return { valid: false, error: 'Too many links — please reduce to avoid spam filters.' };
+  if (urlCount > 2) return { valid: false, error: 'Too many links — reduced to max 2 links to prevent spam filtering.' };
+  if (/^(.)\1{6,}$/.test(trimmed)) return { valid: false, error: 'Please write a meaningful message.' };
   return { valid: true };
 }
 
@@ -50,14 +117,28 @@ export const Contact = () => {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errors, setErrors] = useState<FieldErrors>({});
   const [honeypot, setHoneypot] = useState('');
+  const [serverMessage, setServerMessage] = useState('');
   const mountTimeRef = useRef(Date.now());
 
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current || status === 'sending') return;
 
+    // Honeypot spam trap
     if (honeypot) { setStatus('success'); return; }
+
+    // Instant bot submission protection (< 2.5 seconds from page mount)
     if (Date.now() - mountTimeRef.current < 2500) { setStatus('success'); return; }
+
+    // Rate limiting: 180 seconds cooldown between messages per browser
+    const lastSent = localStorage.getItem('portfolio_contact_last_sent');
+    if (lastSent && Date.now() - Number(lastSent) < 180000) {
+      const remainingSeconds = Math.ceil((180000 - (Date.now() - Number(lastSent))) / 1000);
+      setErrors({
+        message: `Rate limit active: please wait ${remainingSeconds}s before sending another message.`
+      });
+      return;
+    }
 
     const formData = new FormData(formRef.current);
     const name = (formData.get('name') as string) || '';
@@ -78,10 +159,13 @@ export const Contact = () => {
 
     try {
       const response = await fetch('https://formspree.io/f/xldarrpa', {
-        method: 'POST', body: formData, headers: { Accept: 'application/json' },
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
       });
       if (response.ok) {
         setStatus('success');
+        localStorage.setItem('portfolio_contact_last_sent', String(Date.now()));
         formRef.current.reset();
         setTimeout(() => setStatus('idle'), 5000);
       } else {
@@ -347,7 +431,7 @@ export const Contact = () => {
             <div className="min-w-0 flex-1">
               <h3 className="font-bold text-xs text-foreground/70 uppercase tracking-wider">Location</h3>
               <p className="text-foreground font-medium text-sm sm:text-base truncate">
-                Phagwara (LPU), Punjab & Bihar, India
+                Phagwara (LPU), Punjab, India
               </p>
             </div>
           </Card>
