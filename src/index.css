@@ -122,65 +122,51 @@
         hsl(250 40% 97%) 100%);
   }
 
-  /* Rainbow Mouse Spotlight */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    background:
-      radial-gradient(circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        hsl(var(--spotlight-hue, 270) 90% 60% / 0.28),
-        hsl(var(--spotlight-hue, 270) 85% 55% / 0.14) 30%,
-        hsl(var(--spotlight-hue, 270) 80% 50% / 0.05) 50%,
-        transparent 65%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  body:hover::before {
-    opacity: 1;
-  }
 }
 
 /* ─── Utilities ─── */
 
 @layer utilities {
 
-  /* Dark mode glass */
+  /* Dark mode Apple-grade frosted glass */
   .glass-effect {
-    background: hsl(var(--card) / 0.6);
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--border));
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(30, 27, 46, 0.45);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 10px 30px -5px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  /* Light mode glass */
+  /* Light mode Apple-grade frosted glass */
   html.light .glass-effect {
-    background: hsl(0 0% 100% / 0.75);
-    border: 1px solid hsl(240 20% 80% / 0.4);
+    background: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     box-shadow:
-      0 8px 32px rgba(120, 80, 200, 0.08),
-      0 2px 12px rgba(0, 0, 0, 0.04);
+      0 10px 30px -5px rgba(120, 80, 200, 0.08),
+      0 2px 10px 0 rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
   }
 
-  /* Rainbow hover on glass cards — uses mouse-tracked --spotlight-hue, no animation */
+  /* Hover on glass cards */
   .glass-effect:hover {
-    border-color: hsl(var(--spotlight-hue, 270) 80% 60% / 0.4);
+    border-color: rgba(168, 85, 247, 0.45);
     box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.25),
-      0 0 30px hsl(var(--spotlight-hue, 270) 80% 60% / 0.15);
+      0 15px 35px -5px rgba(0, 0, 0, 0.35),
+      0 0 30px rgba(168, 85, 247, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
   }
 
   html.light .glass-effect:hover {
+    border-color: rgba(168, 85, 247, 0.35);
     box-shadow:
-      0 8px 32px rgba(120, 80, 200, 0.12),
-      0 0 40px hsl(var(--spotlight-hue, 270) 80% 60% / 0.12);
+      0 15px 35px -5px rgba(120, 80, 200, 0.14),
+      0 0 35px rgba(168, 85, 247, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 1);
   }
 
   .glass-text {
@@ -253,6 +239,15 @@
     @apply scale-110 shadow-[0_0_20px_#0A66C2];
   }
 
+  .icon-link-box.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+  }
+
+  .icon-link-box.instagram:hover {
+    @apply scale-110 shadow-[0_0_20px_rgba(220,39,67,0.7)];
+  }
+
   .icon-link-box.email {
     @apply bg-[#D44638];
     box-shadow: 0 4px 15px rgba(212, 70, 56, 0.3);
@@ -281,18 +276,20 @@
   .typing-cursor::after {
     content: '|';
     animation: blink 1s infinite;
-    margin-left: 2px;
+    margin-left: 4px;
+    color: hsl(var(--accent));
+    -webkit-text-fill-color: hsl(var(--accent));
+    display: inline-block;
   }
 
   .section-transition {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    opacity: 1;
+    transform: none;
   }
 
   .section-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 

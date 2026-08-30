@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Card } from './ui/card';
-import { Brain, Code, LineChart, Zap } from 'lucide-react';
+import { Brain, Code2, LineChart, Cpu } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -8,24 +8,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const types = [
   {
-    icon: Zap,
-    title: 'Generative AI Tools',
-    desc: 'Leveraging cutting-edge generative AI tools and LLMs to build innovative solutions.'
-  },
-  {
-    icon: Code,
-    title: 'AI Automation',
-    desc: 'Automating complex processes and workflows using AI-driven technologies.'
+    icon: Cpu,
+    title: 'WebGPU & Local AI',
+    desc: 'Building high-performance in-browser AI assistants with WebGPU, running Llama & SLMs offline with zero server cost.'
   },
   {
     icon: Brain,
+    title: 'Generative AI & LLMs',
+    desc: 'Deploying cutting-edge LLMs, multi-agent frameworks, and multimodal AI solutions tailored for practical user needs.'
+  },
+  {
+    icon: Code2,
     title: 'Prompt Engineering',
-    desc: 'Crafting and refining prompts to maximize AI model performance and outputs.'
+    desc: 'Mastering prompt optimization, few-shot prompting, and automated evaluation frameworks to maximize AI reliability.'
   },
   {
     icon: LineChart,
-    title: 'Product Strategy',
-    desc: 'Strategic product thinking from ideation to launch and optimization.'
+    title: 'Product Strategy & PM',
+    desc: 'Combining technical acumen with user-centric product discovery, KPI tracking, and end-to-end product execution.'
   }
 ];
 
@@ -39,14 +39,14 @@ export const Types = () => {
       gsap.from('.type-card', {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top center+=100',
+          start: 'top center+=120',
           toggleActions: 'play none none reverse'
         },
         opacity: 0,
-        scale: 0.8,
+        scale: 0.85,
         duration: 0.6,
-        stagger: 0.15,
-        ease: 'back.out(1.7)'
+        stagger: 0.12,
+        ease: 'back.out(1.5)'
       });
     }, sectionRef);
 
@@ -60,31 +60,29 @@ export const Types = () => {
           What I <span className="text-gradient">Do</span>
         </span>
       </h2>
-      <p className="text-center mb-12 max-w-2xl mx-auto text-foreground/90"> {/* <-- FIX: Removed glass-text */}
-          My expertise spans across multiple domains in technology and product development
+      <p className="text-center mb-12 max-w-2xl mx-auto text-foreground/80">
+        My expertise across AI technology, software execution, and product leadership
       </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {types.map((type, index) => {
           const Icon = type.icon;
           return (
             <Card
               key={index}
-              className="type-card glass-effect p-6 text-center hover:scale-110 hover:shadow-[0_0_40px_rgba(160,80,240,0.4)] transition-all duration-500 relative group"
+              className="type-card glass-effect p-6 text-center hover:scale-105 hover:border-primary/50 hover:shadow-[0_0_35px_rgba(160,80,240,0.35)] transition-all duration-400 relative group rounded-2xl border border-primary/20"
             >
               {/* Corner accents */}
-              <div className="absolute top-2 left-2 w-6 h-6 border-t border-l border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-2 right-2 w-6 h-6 border-b border-r border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-4 group-hover:animate-float group-hover:shadow-[0_0_20px_rgba(160,80,240,0.6)] transition-all duration-300">
-                <Icon size={32} className="text-primary group-hover:drop-shadow-[0_0_8px_rgba(160,80,240,0.8)]" />
+              <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/20 mb-4 group-hover:animate-float group-hover:shadow-[0_0_20px_rgba(160,80,240,0.6)] transition-all duration-300">
+                <Icon size={28} className="text-primary group-hover:drop-shadow-[0_0_8px_rgba(160,80,240,0.8)]" />
               </div>
-              <h3 className="text-xl font-bold mb-2">
-                <span className="text-gradient"> {/* <-- FIX: gradient text */}
-                  {type.title}
-                </span>
+              <h3 className="text-lg font-bold mb-2">
+                <span className="text-gradient">{type.title}</span>
               </h3>
-              <p className="text-sm text-foreground/90">{type.desc}</p> {/* <-- FIX: Removed glass-text */}
+              <p className="text-xs text-foreground/80 leading-relaxed">{type.desc}</p>
             </Card>
           );
         })}

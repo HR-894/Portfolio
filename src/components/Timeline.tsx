@@ -1,47 +1,57 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, BookOpen, Sparkles } from 'lucide-react';
+import { GraduationCap, Award, BookOpen, Sparkles, Brain } from 'lucide-react';
 
 interface TimelineItem {
   year: string;
   title: string;
+  subtitle: string;
   description: string;
-  icon: 'education' | 'award' | 'learning' | 'achievement';
+  icon: string;
 }
 
 const timelineData: TimelineItem[] = [
   {
-    year: '2026',
-    title: 'CUET Aspirant & BCA Start',
-    description: 'Aiming to start BCA program after CUET 2026 to build a strong technical foundation.',
-    icon: 'achievement',
-  },
-  {
-    year: '2025-2026',
-    title: 'IIT Roorkee (iHUB)',
-    description: 'Product Management & Applied AI program, focusing on AI-first product thinking.',
+    year: '2026 - Present',
+    title: 'Bachelor of Computer Applications (BCA)',
+    subtitle: 'Lovely Professional University (LPU)',
+    description: 'Pursuing BCA to build a strong foundational engineering core in software development, data structures, and computer science systems.',
     icon: 'education',
   },
   {
-    year: '2024-2025',
+    year: '2025 - 2026',
+    title: 'Product Management & Applied AI',
+    subtitle: 'IIT Roorkee (iHUB DivyaSampark)',
+    description: 'Specialized program focusing on AI-first product thinking, prompt engineering, agentic workflows, and market strategy.',
+    icon: 'ai',
+  },
+  {
+    year: '2024 - 2025',
     title: 'CBSE 12th (PCM)',
-    description: 'Completed higher secondary education with a focus on Physics, Chemistry, and Maths.',
+    subtitle: 'Higher Secondary Education',
+    description: 'Completed senior secondary education focusing on Physics, Chemistry, and Mathematics with analytical problem-solving foundation.',
     icon: 'learning',
   },
   {
     year: '2023',
-    title: 'Started AI Journey',
-    description: 'Began exploring artificial intelligence, prompt engineering, and product development.',
-    icon: 'award',
+    title: 'Started AI & Tech Journey',
+    subtitle: 'Self-Driven Exploration',
+    description: 'Began exploring generative AI, LLM fine-tuning, prompt optimization frameworks, and modern full-stack development.',
+    icon: 'achievement',
   },
 ];
 
 const getIcon = (type: string) => {
   switch (type) {
-    case 'education': return <GraduationCap size={24} />;
-    case 'award': return <Award size={24} />;
-    case 'learning': return <BookOpen size={24} />;
-    case 'achievement': return <Sparkles size={24} />;
-    default: return <GraduationCap size={24} />;
+    case 'education':
+      return <GraduationCap size={24} />;
+    case 'ai':
+      return <Brain size={24} />;
+    case 'learning':
+      return <BookOpen size={24} />;
+    case 'achievement':
+      return <Sparkles size={24} />;
+    default:
+      return <Award size={24} />;
   }
 };
 
@@ -49,26 +59,29 @@ export const Timeline = () => {
   return (
     <section id="timeline" className="container mx-auto px-6 py-20 relative z-10">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false, amount: 0.2 }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
           <span className="section-heading-glass text-glow inline-block">
-            <span className="text-gradient">My Journey</span>
+            My <span className="text-gradient">Journey</span>
           </span>
         </h2>
+        <p className="text-center mb-16 max-w-2xl mx-auto text-foreground/80">
+          Milestones in academic education, applied AI training, and product development
+        </p>
       </motion.div>
 
       <div className="relative max-w-5xl mx-auto">
-        {/* Central line */}
+        {/* Animated Central Neon Line with Reverse on Scroll-Up */}
         <motion.div
           initial={{ scaleY: 0 }}
           whileInView={{ scaleY: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          viewport={{ once: true }}
-          className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary via-accent to-primary opacity-30 origin-top"
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+          viewport={{ once: false, amount: 0.1 }}
+          className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary via-accent to-primary opacity-40 origin-top shadow-[0_0_12px_rgba(160,80,240,0.6)]"
         />
 
         {timelineData.map((item, index) => (
@@ -76,40 +89,44 @@ export const Timeline = () => {
             key={index}
             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.15, ease: 'easeOut' }}
-            viewport={{ once: true, margin: '-80px' }}
-            className={`timeline-item relative mb-12 flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-              }`}
+            transition={{ duration: 0.6, delay: 0.05, ease: 'easeOut' }}
+            viewport={{ once: false, amount: 0.3 }}
+            className={`timeline-item relative mb-12 flex items-center ${
+              index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+            }`}
           >
             {/* Content card */}
             <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
-              <div className="glass-effect p-6 rounded-xl hover:shadow-[0_0_40px_rgba(160,80,240,0.4)] transition-all duration-500 group hover:-translate-y-2 relative overflow-hidden">
+              <div className="glass-effect p-6 rounded-2xl border border-primary/20 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(160,80,240,0.3)] transition-all duration-300 relative group">
                 {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary/30 rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-accent/30 rounded-br-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-accent/40 rounded-br-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                  <span className="text-2xl font-bold text-gradient">{item.year}</span>
+                <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/30">
+                    {item.year}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gradient">{item.title}</h3>
-                <p className="text-foreground/90">{item.description}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-1 text-gradient">{item.title}</h3>
+                <p className="text-xs font-semibold text-accent/90 mb-2">{item.subtitle}</p>
+                <p className="text-foreground/80 text-sm leading-relaxed">{item.description}</p>
               </div>
             </div>
 
-            {/* Center icon */}
+            {/* Center Icon Node with Reverse on Scroll-Up */}
             <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: 'spring', stiffness: 200 }}
-              viewport={{ once: true }}
-              className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 glass-effect rounded-full flex items-center justify-center border-2 border-primary/50 hover:border-accent transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(160,80,240,0.6)] group z-10"
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, type: 'spring', stiffness: 220 }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 glass-effect rounded-full flex items-center justify-center border-2 border-primary/60 hover:border-accent transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(160,80,240,0.7)] group z-10"
             >
               <div className="text-primary group-hover:text-accent transition-colors duration-300 animate-float">
                 {getIcon(item.icon)}
               </div>
             </motion.div>
 
-            {/* Empty space on the other side */}
+            {/* Empty space on the opposite side */}
             <div className="w-5/12" />
           </motion.div>
         ))}
