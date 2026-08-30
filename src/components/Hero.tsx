@@ -33,40 +33,40 @@ export const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="container mx-auto px-6 pt-32 pb-16 min-h-screen flex items-center justify-center relative z-10"
+      className="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-14 min-h-[90vh] flex items-center justify-center relative z-10"
     >
-      <div className="glass-effect rounded-3xl p-8 md:p-12 max-w-6xl w-full mx-auto relative overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.35)] border border-primary/20">
+      <div className="glass-effect rounded-3xl p-5 sm:p-8 md:p-12 max-w-6xl w-full mx-auto relative overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.35)] border border-primary/20">
         {/* Futuristic Sci-fi Corner Brackets */}
-        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/60 rounded-tl-3xl pointer-events-none" />
-        <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-primary/60 rounded-tr-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-primary/60 rounded-bl-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-primary/60 rounded-br-3xl pointer-events-none" />
+        <div className="absolute top-0 left-0 w-10 sm:w-16 h-10 sm:h-16 border-t-2 border-l-2 border-primary/60 rounded-tl-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-10 sm:w-16 h-10 sm:h-16 border-t-2 border-r-2 border-primary/60 rounded-tr-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-10 sm:w-16 h-10 sm:h-16 border-b-2 border-l-2 border-primary/60 rounded-bl-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-10 sm:w-16 h-10 sm:h-16 border-b-2 border-r-2 border-primary/60 rounded-br-3xl pointer-events-none" />
 
         {/* Ambient Top Glow Line */}
         <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-70" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Hero Copy & Actions (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             {/* Status Pill */}
-            <div className="hero-anim-item inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-effect border border-primary/30 text-xs font-medium text-foreground/90">
-              <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
-              <span>Building Next-Gen AI & Products</span>
+            <div className="hero-anim-item inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full glass-effect border border-primary/30 text-[11px] sm:text-xs font-medium text-foreground/90 max-w-full">
+              <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse flex-shrink-0" />
+              <span className="truncate">Building Next-Gen AI & Products</span>
             </div>
 
-            {/* Main Heading with Typewriter */}
-            <h1 className="hero-anim-item text-4xl sm:text-5xl md:text-6xl font-black leading-[1.15] tracking-tight">
+            {/* Main Heading with Typewriter & Fluid Clamp Font */}
+            <h1 className="hero-anim-item text-[clamp(2rem,7.2vw,3.75rem)] font-black leading-[1.12] tracking-tight break-words">
               <span className="text-foreground">Hi, I'm </span>
               <br />
-              <span className={`text-gradient text-glow inline-block py-1 pr-2 ${!nameComplete ? 'typing-cursor' : ''}`}>
+              <span className={`text-gradient text-glow inline-block py-0.5 pr-1 max-w-full break-words ${!nameComplete ? 'typing-cursor' : ''}`}>
                 {nameText || '\u00A0'}
               </span>
             </h1>
 
             {/* Subtitle / Role */}
             {nameComplete && (
-              <div className="hero-anim-item min-h-[50px] flex items-center">
-                <p className="text-base sm:text-lg md:text-xl font-medium text-foreground/90">
+              <div className="hero-anim-item min-h-[48px] flex items-center">
+                <p className="text-[clamp(0.92rem,3.4vw,1.25rem)] font-medium text-foreground/90 leading-snug break-words">
                   <span className={`text-glow inline-block ${!roleComplete ? 'typing-cursor' : ''}`}>
                     {roleText || '\u00A0'}
                   </span>

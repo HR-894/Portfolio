@@ -137,22 +137,22 @@ export const Portfolio = () => {
           <button
             onClick={prevSlide}
             aria-label="Previous project"
-            className="absolute left-0 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full glass-effect border border-primary/40 flex items-center justify-center text-white hover:bg-primary/30 hover:scale-110 hover:shadow-[0_0_25px_rgba(160,80,240,0.6)] transition-all duration-300"
+            className="absolute left-1 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full glass-effect border border-primary/40 flex items-center justify-center text-white hover:bg-primary/30 hover:scale-110 hover:shadow-[0_0_25px_rgba(160,80,240,0.6)] transition-all duration-300"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           {/* Navigation Arrow Right */}
           <button
             onClick={nextSlide}
             aria-label="Next project"
-            className="absolute right-0 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full glass-effect border border-primary/40 flex items-center justify-center text-white hover:bg-primary/30 hover:scale-110 hover:shadow-[0_0_25px_rgba(160,80,240,0.6)] transition-all duration-300"
+            className="absolute right-1 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-12 sm:h-12 rounded-full glass-effect border border-primary/40 flex items-center justify-center text-white hover:bg-primary/30 hover:scale-110 hover:shadow-[0_0_25px_rgba(160,80,240,0.6)] transition-all duration-300"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           {/* 3D Stage */}
-          <div className="relative min-h-[480px] sm:min-h-[520px] flex items-center justify-center py-4 px-2 perspective-[1200px]">
+          <div className="relative min-h-[460px] sm:min-h-[520px] flex items-center justify-center py-2 sm:py-4 px-1 sm:px-2 perspective-[1200px] w-full">
             {/* Left Background Preview Card (Desktop) */}
             <div
               onClick={() => {
@@ -202,19 +202,19 @@ export const Portfolio = () => {
                   rotateY: direction === 'next' ? -8 : 8,
                 }}
                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="w-full max-w-2xl z-20 relative"
+                className="w-full max-w-2xl z-20 relative px-1 sm:px-0"
               >
                 <Card className="glass-effect rounded-3xl overflow-hidden border-2 border-primary/30 shadow-[0_15px_50px_rgba(0,0,0,0.5)] hover:border-primary/60 hover:shadow-[0_0_50px_rgba(160,80,240,0.4)] transition-all duration-500 relative group">
                   {/* Futuristic Sci-fi Corner Brackets */}
-                  <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary/60 rounded-tl-3xl z-20 pointer-events-none" />
-                  <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-primary/60 rounded-tr-3xl z-20 pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-primary/60 rounded-bl-3xl z-20 pointer-events-none" />
-                  <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-primary/60 rounded-br-3xl z-20 pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-8 sm:w-12 h-8 sm:h-12 border-t-2 border-l-2 border-primary/60 rounded-tl-3xl z-20 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-8 sm:w-12 h-8 sm:h-12 border-t-2 border-r-2 border-primary/60 rounded-tr-3xl z-20 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-8 sm:w-12 h-8 sm:h-12 border-b-2 border-l-2 border-primary/60 rounded-bl-3xl z-20 pointer-events-none" />
+                  <div className="absolute bottom-0 right-0 w-8 sm:w-12 h-8 sm:h-12 border-b-2 border-r-2 border-primary/60 rounded-br-3xl z-20 pointer-events-none" />
 
                   {/* Top Badge */}
-                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-20 flex items-center gap-2">
                     {activeProject.badge && (
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-primary/40 backdrop-blur-md text-white border border-primary/50 shadow-[0_0_15px_rgba(160,80,240,0.5)]">
+                      <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-primary/40 backdrop-blur-md text-white border border-primary/50 shadow-[0_0_15px_rgba(160,80,240,0.5)]">
                         {activeProject.badge}
                       </span>
                     )}
@@ -232,11 +232,11 @@ export const Portfolio = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
 
-                    <div className="absolute bottom-3 left-4 flex flex-wrap gap-1.5 z-10">
+                    <div className="absolute bottom-2 sm:bottom-3 left-3 sm:left-4 flex flex-wrap gap-1 sm:gap-1.5 z-10">
                       {activeProject.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-black/70 text-white/90 backdrop-blur-md border border-white/15"
+                          className="px-2 sm:px-2.5 py-0.5 rounded-md text-[10px] sm:text-xs font-medium bg-black/70 text-white/90 backdrop-blur-md border border-white/15"
                         >
                           {tag}
                         </span>
@@ -245,34 +245,34 @@ export const Portfolio = () => {
                   </div>
 
                   {/* Card Content & Action Bar */}
-                  <div className="p-6 sm:p-8 space-y-4">
+                  <div className="p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4">
                     <div>
                       <h3
                         onClick={() => setSelectedProject(activeProject)}
-                        className="text-2xl sm:text-3xl font-black cursor-pointer hover:text-primary transition-colors tracking-tight"
+                        className="text-lg sm:text-2xl md:text-3xl font-black cursor-pointer hover:text-primary transition-colors tracking-tight break-words"
                       >
                         <span className="text-gradient">{activeProject.title}</span>
                       </h3>
-                      <p className="text-xs sm:text-sm font-semibold text-accent uppercase tracking-wider mt-1">
+                      <p className="text-[11px] sm:text-xs md:text-sm font-semibold text-accent uppercase tracking-wider mt-1">
                         {activeProject.tagline}
                       </p>
                     </div>
 
-                    <p className="text-foreground/85 text-sm sm:text-base leading-relaxed">
+                    <p className="text-foreground/85 text-xs sm:text-sm md:text-base leading-relaxed">
                       {activeProject.desc}
                     </p>
 
                     {/* Quick Direct Actions */}
-                    <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-white/10">
-                      <div className="flex flex-wrap items-center gap-3">
+                    <div className="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-white/10">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         {activeProject.liveUrl && (
                           <Button
                             asChild
                             size="sm"
-                            className="bg-primary hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(160,80,240,0.5)] transition-all rounded-xl"
+                            className="bg-primary hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(160,80,240,0.5)] transition-all rounded-xl text-xs sm:text-sm"
                           >
                             <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="mr-1.5 w-4 h-4" />
+                              <ExternalLink className="mr-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4" />
                               Live Demo
                             </a>
                           </Button>
@@ -283,10 +283,10 @@ export const Portfolio = () => {
                             asChild
                             variant="outline"
                             size="sm"
-                            className="border-primary/40 hover:border-primary hover:shadow-[0_0_15px_rgba(160,80,240,0.3)] transition-all rounded-xl"
+                            className="border-primary/40 hover:border-primary hover:shadow-[0_0_15px_rgba(160,80,240,0.3)] transition-all rounded-xl text-xs sm:text-sm"
                           >
                             <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="mr-1.5 w-4 h-4" />
+                              <Github className="mr-1.5 w-3.5 h-3.5 sm:w-4 sm:h-4" />
                               GitHub
                             </a>
                           </Button>
