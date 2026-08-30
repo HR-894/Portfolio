@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Frosted Dark Glass -->
+    <linearGradient id="tileBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242238" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#191728" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#12101e" stop-opacity="0.98" />
+    </linearGradient>
+
+    <!-- Glowing Rim Gradient -->
+    <linearGradient id="rimGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333ea" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <!-- Monogram Gradient -->
+    <linearGradient id="letterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="30%" stop-color="#a855f7" />
+      <stop offset="70%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+
+    <!-- 3D Shadow on Glass -->
+    <filter id="tileShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#a855f7" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#ec4899" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Letter 3D Depth Shadow -->
+    <filter id="letterShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.6" />
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#ffffff" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Outer Glow -->
+  <rect x="56" y="56" width="400" height="400" rx="90" fill="url(#tileBg)" stroke="url(#rimGlow)" stroke-width="4.5" filter="url(#tileShadow)" />
+
+  <!-- Frosted Glass Specular Top Highlight -->
+  <path d="M 130 60 L 382 60 A 86 86 0 0 1 452 130" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Exact Concept 3 'HR' Geometric Monogram -->
+  <g filter="url(#letterShadow)">
+    <!-- Left Stem of H -->
+    <rect x="160" y="170" width="28" height="172" rx="6" fill="url(#letterGrad)" />
+
+    <!-- Center Shared Stem of H & R -->
+    <rect x="236" y="170" width="28" height="172" rx="6" fill="url(#letterGrad)" />
+
+    <!-- Top Loop of R -->
+    <path d="M 240 170 L 292 170 C 322 170 338 186 338 212 C 338 238 322 254 292 254 L 240 254 Z" fill="url(#letterGrad)" />
+    
+    <!-- Cutout inside R Loop -->
+    <path d="M 264 196 L 290 196 C 306 196 312 204 312 212 C 312 220 306 228 290 228 L 264 228 Z" fill="#1b172c" />
+
+    <!-- Smooth Flowing Crossbar bridging H into the dynamic curved Leg of R -->
+    <path d="M 160 236 L 245 236 Q 275 236 300 270 L 340 334 C 348 344 340 348 330 348 L 302 348 C 292 348 286 342 278 330 L 246 278 Q 236 262 210 262 L 160 262 Z" fill="url(#letterGrad)" />
+  </g>
+</svg>

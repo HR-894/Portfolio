@@ -32,8 +32,15 @@ export const Navigation = () => {
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href="#" className="text-xl md:text-2xl font-black tracking-tight">
-              <span className="text-gradient">Himanshu Raj</span>
+            <a href="#" className="flex items-center gap-3 group">
+              <img
+                src="/logo.png"
+                alt="HR Logo"
+                className="w-9 h-9 rounded-xl transition-transform duration-300 group-hover:scale-110 shadow-[0_0_15px_rgba(160,80,240,0.5)] object-cover"
+              />
+              <span className="text-xl md:text-2xl font-black tracking-tight text-gradient">
+                Himanshu Raj
+              </span>
             </a>
 
             {/* Desktop Navigation */}
